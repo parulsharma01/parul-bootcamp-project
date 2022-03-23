@@ -1,0 +1,15 @@
+Git branches :
+
+-master
+    -domain-design
+        -domain-design-POC  //POC proof of concept to be used by all other branches
+        -PRODUCT
+        -PRODUCT_VARIATION
+        -CATEGORY
+        -CATEGORY_METADATA_FIELD
+        -CATEGORY_METADATA_FIELD_VALUES
+        -PRODUCT_REVIEW
+        -ORDER
+        -ORDER_PRODUCT
+        -ORDER_STATUS
+        -CART
