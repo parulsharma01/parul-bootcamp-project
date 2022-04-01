@@ -30,17 +30,17 @@ public class Product {
     //key
     int sellerUserId;
 
+    //key
+    int categoryId;
+
     String name;
     String description;
+    String brand;
 
-    //key
-     int categoryId;
-
-     boolean isCancellable;
-     boolean isReturnable;
-     String brand;
-     boolean isActive;
-     boolean isDeleted;
+    boolean isCancellable;
+    boolean isReturnable;
+    boolean isActive;
+    boolean isDeleted;
 
     public int getId() {
         return id;
