@@ -14,4 +14,5 @@ class ParulBootcampProjectApplicationTests {
 	@Test
 	@Sql({"/createSchema.sql"})
 	void createAllTables(){}
+
 }
