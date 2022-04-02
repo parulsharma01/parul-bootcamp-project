@@ -22,20 +22,18 @@ PASSWORD_UPDATE_DATE
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-
-    String email;
-    String firstName;
-    String middleName;
-    String lastName;
-    String password;
-    boolean isDeleted;
-    boolean isActive;
-    boolean isExpired;
-    boolean isLocked;
-
-    int invalidAttemptCount;
-    Date passwordUpdateDate;
+    private int id;
+    private String email;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String password;
+    private boolean isDeleted;
+    private boolean isActive;
+    private boolean isExpired;
+    private boolean isLocked;
+    private int invalidAttemptCount;
+    private Date passwordUpdateDate;
 
     public int getId() {
         return id;
