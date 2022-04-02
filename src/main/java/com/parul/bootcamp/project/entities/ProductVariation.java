@@ -1,71 +1,80 @@
 package com.parul.bootcamp.project.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class ProductVariation {
 
-    @Id
-    private int id;
-    private String price;
-    private String qty;
-    private String image;
-    private boolean isActive;
-    private Product productId;
-    private String metadata;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  private double price;
+  private int qty;
+  private String image;
+  private boolean isActive;
+  @ManyToOne
+  @JoinColumn
+  private Product product;
+  private String metadata;
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getPrice() {
-        return price;
-    }
+  public double getPrice() {
+    return price;
+  }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+  public void setPrice(double price) {
+    this.price = price;
+  }
 
-    public String getQty() {
-        return qty;
-    }
+  public int getQty() {
+    return qty;
+  }
 
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
+  public void setQty(int qty) {
+    this.qty = qty;
+  }
 
-    public String getImage() {
-        return image;
-    }
+  public String getImage() {
+    return image;
+  }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+  public void setImage(String image) {
+    this.image = image;
+  }
 
-    public boolean isActive() {
-        return isActive;
-    }
+  public boolean isActive() {
+    return isActive;
+  }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
+  public void setActive(boolean active) {
+    isActive = active;
+  }
 
-    public Product getProductId() {
-        return productId;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
-    }
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
-    public String getMetadata() {
-        return metadata;
-    }
+  public String getMetadata() {
+    return metadata;
+  }
 
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
-    }
+  public void setMetadata(String metadata) {
+    this.metadata = metadata;
+  }
 }

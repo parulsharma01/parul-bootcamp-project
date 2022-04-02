@@ -1,44 +1,48 @@
 package com.parul.bootcamp.project.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class ProductReview {
-    @Id
-    private int id;
-    private Customer customerId;
-    private String review;
-    private String rating;
-    private Product productId;
 
-    public Customer getCustomerId() {
-        return customerId;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
+  @ManyToOne
+  @JoinColumn
+  private Customer customerId;
 
-    public String getReview() {
-        return review;
-    }
+  private String review;
+  private String rating;
 
-    public void setReview(String review) {
-        this.review = review;
-    }
+  public Customer getCustomerId() {
+    return customerId;
+  }
 
-    public String getRating() {
-        return rating;
-    }
+  public void setCustomerId(Customer customerId) {
+    this.customerId = customerId;
+  }
 
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
+  public String getReview() {
+    return review;
+  }
 
-    public Product getProductId() {
-        return productId;
-    }
+  public void setReview(String review) {
+    this.review = review;
+  }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
-    }
+  public String getRating() {
+    return rating;
+  }
+
+  public void setRating(String rating) {
+    this.rating = rating;
+  }
+
 }

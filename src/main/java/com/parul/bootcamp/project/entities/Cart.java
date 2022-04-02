@@ -1,53 +1,57 @@
 package com.parul.bootcamp.project.entities;
 
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Cart {
-    @Id
-    private int id;
-    private Customer customerId;
-    private int quantity;
-    private boolean isWishlistItem;
 
-    public int getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  private int quantity;
+  private boolean isWishlistItem;
 
-    public Customer getCustomerId() {
-        return customerId;
-    }
+  @OneToMany
+  @JoinColumn(name = "cart_id")
+  private List<ProductVariation> productVariations;
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
 
-    public boolean isWishlistItem() {
-        return isWishlistItem;
-    }
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
 
-    public void setWishlistItem(boolean wishlistItem) {
-        isWishlistItem = wishlistItem;
-    }
+  public boolean isWishlistItem() {
+    return isWishlistItem;
+  }
 
-    public ProductVariation getProductVariationId() {
-        return productVariationId;
-    }
+  public void setWishlistItem(boolean wishlistItem) {
+    isWishlistItem = wishlistItem;
+  }
 
-    public void setProductVariationId(ProductVariation productVariationId) {
-        this.productVariationId = productVariationId;
-    }
+  public List<ProductVariation> getProductVariations() {
+    return productVariations;
+  }
 
-    private ProductVariation productVariationId;
+  public void setProductVariations(
+      List<ProductVariation> productVariations) {
+    this.productVariations = productVariations;
+  }
 }

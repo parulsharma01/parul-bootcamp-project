@@ -1,12 +1,19 @@
 package com.parul.bootcamp.project.entities;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private String name;
   private String description;
@@ -15,8 +22,15 @@ public class Product {
   private String brand;
   private boolean isActive;
   private boolean isDeleted;
-  private Seller sellerId;
-  private Category categoryId;
+  @OneToOne
+  private Seller seller;
+
+  @OneToMany
+  @JoinColumn(name = "product_id")
+  private List<ProductReview> productReviews;
+
+  @OneToOne
+  private Category category;
 
   public int getId() {
     return id;
@@ -82,19 +96,19 @@ public class Product {
     this.isDeleted = deleted;
   }
 
-  public Seller getSellerId() {
-    return sellerId;
+  public Seller getSeller() {
+    return seller;
   }
 
-  public void setSellerId(Seller sellerId) {
-    this.sellerId = sellerId;
+  public void setSeller(Seller seller) {
+    this.seller = seller;
   }
 
-  public Category getCategoryId() {
-    return categoryId;
+  public Category getCategory() {
+    return category;
   }
 
-  public void setCategoryId(Category categoryId) {
-    this.categoryId = categoryId;
+  public void setCategory(Category category) {
+    this.category = category;
   }
 }

@@ -1,7 +1,15 @@
 package com.parul.bootcamp.project.entities;
 
-import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /*
 USER
@@ -20,114 +28,150 @@ PASSWORD_UPDATE_DATE
 * */
 @Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String email;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String password;
-    private boolean isDeleted;
-    private boolean isActive;
-    private boolean isExpired;
-    private boolean isLocked;
-    private int invalidAttemptCount;
-    private Date passwordUpdateDate;
 
-    public int getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  private String email;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String password;
+  private boolean isDeleted;
+  private boolean isActive;
+  private boolean isExpired;
+  private boolean isLocked;
+  private int invalidAttemptCount;
+  private Date passwordUpdateDate;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @OneToOne(mappedBy = "user")
+  @JoinColumn
+  private Seller seller;
 
-    public String getEmail() {
-        return email;
-    }
+  @ManyToMany
+  private List<Role> roles;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  @OneToMany
+  @JoinColumn(name = "user_id")
+  private List<Address> addresses;
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public Seller getSeller() {
+    return seller;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setSeller(Seller seller) {
+    this.seller = seller;
+  }
 
-    public String getMiddleName() {
-        return middleName;
-    }
+  public List<Role> getRoles() {
+    return roles;
+  }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
+  public void setRoles(List<Role> roles) {
+    this.roles = roles;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public List<Address> getAddresses() {
+    return addresses;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setAddresses(List<Address> addresses) {
+    this.addresses = addresses;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public boolean isActive() {
-        return isActive;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public boolean isExpired() {
-        return isExpired;
-    }
+  public String getMiddleName() {
+    return middleName;
+  }
 
-    public void setExpired(boolean expired) {
-        isExpired = expired;
-    }
+  public void setMiddleName(String middleName) {
+    this.middleName = middleName;
+  }
 
-    public boolean isLocked() {
-        return isLocked;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setLocked(boolean locked) {
-        isLocked = locked;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public int getInvalidAttemptCount() {
-        return invalidAttemptCount;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setInvalidAttemptCount(int invalidAttemptCount) {
-        this.invalidAttemptCount = invalidAttemptCount;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public Date getPasswordUpdateDate() {
-        return passwordUpdateDate;
-    }
+  public boolean isDeleted() {
+    return isDeleted;
+  }
 
-    public void setPasswordUpdateDate(Date passwordUpdateDate) {
-        this.passwordUpdateDate = passwordUpdateDate;
-    }
+  public void setDeleted(boolean deleted) {
+    isDeleted = deleted;
+  }
+
+  public boolean isActive() {
+    return isActive;
+  }
+
+  public void setActive(boolean active) {
+    isActive = active;
+  }
+
+  public boolean isExpired() {
+    return isExpired;
+  }
+
+  public void setExpired(boolean expired) {
+    isExpired = expired;
+  }
+
+  public boolean isLocked() {
+    return isLocked;
+  }
+
+  public void setLocked(boolean locked) {
+    isLocked = locked;
+  }
+
+  public int getInvalidAttemptCount() {
+    return invalidAttemptCount;
+  }
+
+  public void setInvalidAttemptCount(int invalidAttemptCount) {
+    this.invalidAttemptCount = invalidAttemptCount;
+  }
+
+  public Date getPasswordUpdateDate() {
+    return passwordUpdateDate;
+  }
+
+  public void setPasswordUpdateDate(Date passwordUpdateDate) {
+    this.passwordUpdateDate = passwordUpdateDate;
+  }
 }

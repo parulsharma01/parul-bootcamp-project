@@ -1,107 +1,138 @@
 package com.parul.bootcamp.project.entities;
 
-import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity(name = "Orders")
 public class Order {
-    @Id
-    private int id;
-    private Customer customerId;
-    private Double amtPaid;
-    private Date dateCreated;
-    private String paymentMethod;
-    private String custAddCity;
-    private String custAddState;
-    private String custAddCountry;
-    private String custAddAddressLine;
-    private String custAddZipCode;
-    private String custAddLabel;
 
-    public int getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @ManyToOne
+  private Customer customer;
 
-    public Customer getCustomerId() {
-        return customerId;
-    }
+  @OneToMany
+  @JoinColumn
+  List<OrderProduct> orderProducts;
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
+  private Double amtPaid;
+  @Temporal(TemporalType.DATE)
+  private Date dateCreated;
+  private String paymentMethod;
+  private String custAddCity;
+  private String custAddState;
+  private String custAddCountry;
+  private String custAddAddressLine;
+  private String custAddZipCode;
+  private String custAddLabel;
 
-    public Double getAmtPaid() {
-        return amtPaid;
-    }
+  public List<OrderProduct> getOrderProducts() {
+    return orderProducts;
+  }
 
-    public void setAmtPaid(Double amtPaid) {
-        this.amtPaid = amtPaid;
-    }
+  public void setOrderProducts(
+      List<OrderProduct> orderProducts) {
+    this.orderProducts = orderProducts;
+  }
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
+  public Customer getCustomer() {
+    return customer;
+  }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
 
-    public String getCustAddCity() {
-        return custAddCity;
-    }
+  public Double getAmtPaid() {
+    return amtPaid;
+  }
 
-    public void setCustAddCity(String custAddCity) {
-        this.custAddCity = custAddCity;
-    }
+  public void setAmtPaid(Double amtPaid) {
+    this.amtPaid = amtPaid;
+  }
 
-    public String getCustAddState() {
-        return custAddState;
-    }
+  public Date getDateCreated() {
+    return dateCreated;
+  }
 
-    public void setCustAddState(String custAddState) {
-        this.custAddState = custAddState;
-    }
+  public void setDateCreated(Date dateCreated) {
+    this.dateCreated = dateCreated;
+  }
 
-    public String getCustAddCountry() {
-        return custAddCountry;
-    }
+  public String getPaymentMethod() {
+    return paymentMethod;
+  }
 
-    public void setCustAddCountry(String custAddCountry) {
-        this.custAddCountry = custAddCountry;
-    }
+  public void setPaymentMethod(String paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
 
-    public String getCustAddAddressLine() {
-        return custAddAddressLine;
-    }
+  public String getCustAddCity() {
+    return custAddCity;
+  }
 
-    public void setCustAddAddressLine(String custAddAddressLine) {
-        this.custAddAddressLine = custAddAddressLine;
-    }
+  public void setCustAddCity(String custAddCity) {
+    this.custAddCity = custAddCity;
+  }
 
-    public String getCustAddZipCode() {
-        return custAddZipCode;
-    }
+  public String getCustAddState() {
+    return custAddState;
+  }
 
-    public void setCustAddZipCode(String custAddZipCode) {
-        this.custAddZipCode = custAddZipCode;
-    }
+  public void setCustAddState(String custAddState) {
+    this.custAddState = custAddState;
+  }
 
-    public String getCustAddLabel() {
-        return custAddLabel;
-    }
+  public String getCustAddCountry() {
+    return custAddCountry;
+  }
 
-    public void setCustAddLabel(String custAddLabel) {
-        this.custAddLabel = custAddLabel;
-    }
+  public void setCustAddCountry(String custAddCountry) {
+    this.custAddCountry = custAddCountry;
+  }
+
+  public String getCustAddAddressLine() {
+    return custAddAddressLine;
+  }
+
+  public void setCustAddAddressLine(String custAddAddressLine) {
+    this.custAddAddressLine = custAddAddressLine;
+  }
+
+  public String getCustAddZipCode() {
+    return custAddZipCode;
+  }
+
+  public void setCustAddZipCode(String custAddZipCode) {
+    this.custAddZipCode = custAddZipCode;
+  }
+
+  public String getCustAddLabel() {
+    return custAddLabel;
+  }
+
+  public void setCustAddLabel(String custAddLabel) {
+    this.custAddLabel = custAddLabel;
+  }
+
+
 }

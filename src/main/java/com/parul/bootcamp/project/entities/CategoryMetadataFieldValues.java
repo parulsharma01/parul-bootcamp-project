@@ -1,16 +1,26 @@
 package com.parul.bootcamp.project.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 
 @Entity
 public class CategoryMetadataFieldValues {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   int id;
-  private CategoryMetadataField categoryMetadataFieldId;
-  private Category categoryId;
-  private String values;
+
+  @OneToOne
+  private CategoryMetadataField categoryMetadataField;
+
+  @OneToOne
+  private Category category;
+
+  private String multipleValues;
 
   public int getId() {
     return id;
@@ -20,27 +30,29 @@ public class CategoryMetadataFieldValues {
     this.id = id;
   }
 
-  public CategoryMetadataField getCategoryMetadataFieldId() {
-    return categoryMetadataFieldId;
+  public CategoryMetadataField getCategoryMetadataField() {
+    return categoryMetadataField;
   }
 
-  public void setCategoryMetadataFieldId(CategoryMetadataField categoryMetadataFieldId) {
-    this.categoryMetadataFieldId = categoryMetadataFieldId;
+  public void setCategoryMetadataField(
+      CategoryMetadataField categoryMetadataField) {
+    this.categoryMetadataField = categoryMetadataField;
   }
 
-  public Category getCategoryId() {
-    return categoryId;
+  public Category getCategory() {
+    return category;
   }
 
-  public void setCategoryId(Category categoryId) {
-    this.categoryId = categoryId;
+  public void setCategory(Category category) {
+    this.category = category;
   }
 
-  public String getValues() {
-    return values;
+
+  public String getMultipleValues() {
+    return multipleValues;
   }
 
-  public void setValues(String values) {
-    this.values = values;
+  public void setMultipleValues(String multipleValues) {
+    this.multipleValues = multipleValues;
   }
 }

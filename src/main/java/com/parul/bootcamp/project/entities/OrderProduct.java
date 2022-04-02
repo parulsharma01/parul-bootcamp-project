@@ -1,52 +1,56 @@
 package com.parul.bootcamp.project.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+@Entity
 public class OrderProduct {
-    @Id
-    private int id;
-    private Order orderId;
-    private int quantity;
-    private Double price;
-    private ProductVariation productVariationId;
 
-    public int getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  private int quantity;
+  private Double price;
 
-    public Order getOrderId() {
-        return orderId;
-    }
+  @OneToOne
+  @JoinColumn
+  private ProductVariation productVariationId;
 
-    public void setOrderId(Order orderId) {
-        this.orderId = orderId;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
 
-    public Double getPrice() {
-        return price;
-    }
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    public ProductVariation getProductVariationId() {
-        return productVariationId;
-    }
+  public void setPrice(Double price) {
+    this.price = price;
+  }
 
-    public void setProductVariationId(ProductVariation productVariationId) {
-        this.productVariationId = productVariationId;
-    }
+  public ProductVariation getProductVariationId() {
+    return productVariationId;
+  }
+
+  public void setProductVariationId(ProductVariation productVariationId) {
+    this.productVariationId = productVariationId;
+  }
+
 }

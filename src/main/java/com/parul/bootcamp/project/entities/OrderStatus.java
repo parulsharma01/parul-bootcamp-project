@@ -1,52 +1,69 @@
 package com.parul.bootcamp.project.entities;
 
+import com.parul.bootcamp.project.entities.enums.OrderStatusEnum;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+@Entity
 public class OrderStatus {
-    @Id
-    private int id;
-    private Order orderProductId;
-    private String fromStatus;
-    private String toStatus;
-    private String transitionNotesComments;
 
-    public int getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @OneToOne
+  @JoinColumn
+  private OrderProduct orderProductId;
 
-    public Order getOrderProductId() {
-        return orderProductId;
-    }
+  @Enumerated(EnumType.STRING)
+  private OrderStatusEnum fromStatus;
+  @Enumerated(EnumType.STRING)
+  private OrderStatusEnum toStatus;
+  private String transitionNotesComments;
 
-    public void setOrderProductId(Order orderProductId) {
-        this.orderProductId = orderProductId;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getFromStatus() {
-        return fromStatus;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setFromStatus(String fromStatus) {
-        this.fromStatus = fromStatus;
-    }
+  public OrderProduct getOrderProductId() {
+    return orderProductId;
+  }
 
-    public String getToStatus() {
-        return toStatus;
-    }
+  public void setOrderProductId(OrderProduct orderProductId) {
+    this.orderProductId = orderProductId;
+  }
 
-    public void setToStatus(String toStatus) {
-        this.toStatus = toStatus;
-    }
+  public String getFromStatus() {
+    return fromStatus;
+  }
 
-    public String getTransitionNotesComments() {
-        return transitionNotesComments;
-    }
+  public void setFromStatus(String fromStatus) {
+    this.fromStatus = fromStatus;
+  }
 
-    public void setTransitionNotesComments(String transitionNotesComments) {
-        this.transitionNotesComments = transitionNotesComments;
-    }
+  public String getToStatus() {
+    return toStatus;
+  }
+
+  public void setToStatus(String toStatus) {
+    this.toStatus = toStatus;
+  }
+
+  public String getTransitionNotesComments() {
+    return transitionNotesComments;
+  }
+
+  public void setTransitionNotesComments(String transitionNotesComments) {
+    this.transitionNotesComments = transitionNotesComments;
+  }
 }
