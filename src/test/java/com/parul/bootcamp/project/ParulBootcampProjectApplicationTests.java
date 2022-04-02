@@ -10,9 +10,9 @@ class ParulBootcampProjectApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
-	@Test
-	@Sql({"/createSchema.sql"})
-	void createAllTables(){}
+//
+//	@Test
+//	@Sql({"/createSchema.sql"})
+//	void createAllTables(){}
 
 }

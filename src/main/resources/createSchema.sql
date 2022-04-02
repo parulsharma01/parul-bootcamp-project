@@ -11,9 +11,8 @@ CREATE TABLE IF NOT EXISTS address(
   country  VARCHAR(100),
   address_line  VARCHAR(400),
   zip_code  VARCHAR(50),
-  label  VARCHAR(50)
-
---FORIEGN KEY (user_id) REFERENCES user(id),
+  label  VARCHAR(50),
+  FORIEGN KEY (user_id) REFERENCES user(id)
 );
 
 CREATE Table IF NOT EXISTS  user(
