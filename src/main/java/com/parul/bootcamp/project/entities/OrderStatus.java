@@ -43,19 +43,19 @@ public class OrderStatus {
     this.orderProductId = orderProductId;
   }
 
-  public String getFromStatus() {
+  public OrderStatusEnum getFromStatus() {
     return fromStatus;
   }
 
-  public void setFromStatus(String fromStatus) {
+  public void setFromStatus(OrderStatusEnum fromStatus) {
     this.fromStatus = fromStatus;
   }
 
-  public String getToStatus() {
+  public OrderStatusEnum getToStatus() {
     return toStatus;
   }
 
-  public void setToStatus(String toStatus) {
+  public void setToStatus(OrderStatusEnum toStatus) {
     this.toStatus = toStatus;
   }
 
