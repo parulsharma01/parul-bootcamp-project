@@ -1,7 +1,8 @@
 package com.parul.bootcamp.project.entities;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,21 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/*
-USER
-ID
-EMAIL
-FIRST_NAME
-MIDDLE_NAME
-LAST_NAME
-PASSWORD
-IS_DELETED
-IS_ACTIVE
-IS_EXPIRED
-IS_LOCKED
-INVALID_ATTEMPT_COUNT
-PASSWORD_UPDATE_DATE
-* */
 @Entity
 public class User {
 
@@ -49,7 +35,7 @@ public class User {
   private Seller seller;
 
   @ManyToMany
-  private List<Role> roles;
+  private Set<Role> roles;
 
   @OneToMany
   @JoinColumn(name = "user_id")
@@ -63,11 +49,11 @@ public class User {
     this.seller = seller;
   }
 
-  public List<Role> getRoles() {
+  public Set<Role> getRoles() {
     return roles;
   }
 
-  public void setRoles(List<Role> roles) {
+  public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
 
