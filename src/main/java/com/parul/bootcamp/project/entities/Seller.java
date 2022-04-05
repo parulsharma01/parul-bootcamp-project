@@ -1,61 +1,62 @@
 package com.parul.bootcamp.project.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Locale;
 
 @Entity
 public class Seller {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
-  private String gst;
-  private String companyContact;
-  private String companyName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-  @OneToOne
-  private User user;
+    @Column(unique = true, nullable = false)
+    private String gst;
+    private String companyContact;
 
-  public int getId() {
-    return id;
-  }
+    @Column(unique = true, nullable = false)
+    private String companyName;
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
-  public String getGst() {
-    return gst;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setGst(String gst) {
-    this.gst = gst;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getCompanyContact() {
-    return companyContact;
-  }
+    public String getGst() {
+        return gst;
+    }
 
-  public void setCompanyContact(String companyContact) {
-    this.companyContact = companyContact;
-  }
+    public void setGst(String gst) {
+        this.gst = gst;
+    }
 
-  public String getCompanyName() {
-    return companyName;
-  }
+    public String getCompanyContact() {
+        return companyContact;
+    }
 
-  public void setCompanyName(String companyName) {
-    this.companyName = companyName;
-  }
+    public void setCompanyContact(String companyContact) {
+        this.companyContact = companyContact;
+    }
 
-  public User getUser() {
-    return user;
-  }
+    public String getCompanyName() {
+        return companyName;
+    }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -3,14 +3,7 @@ package com.parul.bootcamp.project.entities;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -18,10 +11,13 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+  @Column(unique = true, nullable = false)
   private String email;
+  @Column(nullable = false)
   private String firstName;
   private String middleName;
   private String lastName;
+  @Column(nullable = false)
   private String password;
   private boolean isDeleted;
   private boolean isActive;
@@ -30,7 +26,7 @@ public class User {
   private int invalidAttemptCount;
   private Date passwordUpdateDate;
 
-  @OneToOne(mappedBy = "user")
+  @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
   @JoinColumn
   private Seller seller;
 
