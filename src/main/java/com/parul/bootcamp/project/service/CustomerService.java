@@ -3,6 +3,7 @@ package com.parul.bootcamp.project.service;
 import com.parul.bootcamp.project.dto.CustomerDTO;
 import com.parul.bootcamp.project.entities.Customer;
 import com.parul.bootcamp.project.entities.User;
+import com.parul.bootcamp.project.exceptions.BadRequestException;
 import com.parul.bootcamp.project.repos.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class CustomerService {
 
         String confirmPassword = customerDTO.getConfirmPassword();
         if (! customerDTO.getPassword().equals(confirmPassword)) {
-            return null;
+            throw new BadRequestException("Confirm Password donot match.");
         }
 
         customerRepository.save(customer);

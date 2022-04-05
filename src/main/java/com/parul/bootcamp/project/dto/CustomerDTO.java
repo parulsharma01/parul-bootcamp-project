@@ -10,6 +10,7 @@ import java.util.Set;
 
 public class CustomerDTO {
 
+    @NotBlank(message = "Email is mandatory")
     @Email(message = "Email not valid")
     String email;
     @NotBlank(message = "Firstname is mandatory")
