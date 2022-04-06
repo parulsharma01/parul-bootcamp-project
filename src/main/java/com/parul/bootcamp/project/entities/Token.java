@@ -2,7 +2,6 @@ package com.parul.bootcamp.project.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 public class Token {
@@ -14,6 +13,16 @@ public class Token {
     private String userEmail;
     private String activationToken;
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "id=" + id +
+                ", userEmail='" + userEmail + '\'' +
+                ", activationToken='" + activationToken + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 
     public int getId() {
         return id;

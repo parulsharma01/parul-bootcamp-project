@@ -1,19 +1,12 @@
 package com.parul.bootcamp.project.service;
 
-import com.parul.bootcamp.project.dto.CustomerDTO;
-import com.parul.bootcamp.project.entities.Customer;
 import com.parul.bootcamp.project.entities.Token;
 import com.parul.bootcamp.project.entities.User;
-import com.parul.bootcamp.project.exceptions.BadRequestException;
-import com.parul.bootcamp.project.repos.CustomerRepository;
 import com.parul.bootcamp.project.repos.TokenRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service

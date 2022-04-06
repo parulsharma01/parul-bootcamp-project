@@ -6,12 +6,9 @@ import com.parul.bootcamp.project.entities.Token;
 import com.parul.bootcamp.project.entities.User;
 import com.parul.bootcamp.project.exceptions.BadRequestException;
 import com.parul.bootcamp.project.repos.CustomerRepository;
-import com.parul.bootcamp.project.repos.TokenRepository;
 import com.parul.bootcamp.project.repos.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -61,7 +58,7 @@ public class CustomerService {
     }
 
     public User activateUserByToken(Token token){
-        User user= userRepository.findByEmail(token.getUserEmail());
+        User user= modelMapper.map(userRepository.findByEmail(token.getUserEmail()),User.class);
         Token validToken = tokenService.validateToken(token);
         if (validToken == null) {
             throw new BadRequestException("Invalid Token");

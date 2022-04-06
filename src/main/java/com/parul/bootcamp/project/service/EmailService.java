@@ -16,7 +16,7 @@ public class EmailService {
     @Async
     public void sendSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("activationToken@localhost.com");
+        message.setFrom("parul.sharma1@tothenew.com");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
