@@ -18,6 +18,7 @@ public class Seller {
     private String companyName;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+
     private User user;
 
     public int getId() {
