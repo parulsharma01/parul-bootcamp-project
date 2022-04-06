@@ -66,6 +66,7 @@ public class CustomerService {
                 throw new BadRequestException("User with this email doesn't exist");
         }else{
             user.setActive(true);
+            userRepository.save(user);
         }
         return user;
     }
