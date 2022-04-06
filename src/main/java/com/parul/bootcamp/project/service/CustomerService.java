@@ -5,6 +5,7 @@ import com.parul.bootcamp.project.entities.Customer;
 import com.parul.bootcamp.project.entities.User;
 import com.parul.bootcamp.project.exceptions.BadRequestException;
 import com.parul.bootcamp.project.repos.CustomerRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ import java.util.List;
 public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     public List<Customer> getAllCustomers()
     {
@@ -28,20 +32,13 @@ public class CustomerService {
         return customerRepository.findById(id).get();
     }
 
-    public Customer saveOrUpdate(CustomerDTO customerDTO)
+    public Customer registerCustomer(CustomerDTO customerDTO)
     {
-        User user = new User();
-        user.setEmail(customerDTO.getEmail());
-        user.setFirstName(customerDTO.getFirstName());
-        user.setMiddleName(customerDTO.getMiddleName());
-        user.setLastName(customerDTO.getLastName());
-        user.setPassword(customerDTO.getPassword());
-        user.setRoles(customerDTO.getRoles());
-        user.setPasswordUpdateDate(customerDTO.getPasswordUpdateDate());
-
-        Customer customer = new Customer();
+        System.out.println("Customer ENtity"+ customerDTO);
+        User user = modelMapper.map(customerDTO, User.class);
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+        System.out.println("Customer contact"+ customerDTO.getContact());
         customer.setUser(user);
-        customer.setContact(customerDTO.getContactNumber());
 
         String confirmPassword = customerDTO.getConfirmPassword();
         if (! customerDTO.getPassword().equals(confirmPassword)) {

@@ -41,19 +41,19 @@ public class CustomerDTO {
     Date passwordUpdateDate;
     @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$",
             message = "Phone number not valid")
-    String contactNumber;
+    String contact;
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getContact() {
+        return contact;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public CustomerDTO(String email, String firstName, String lastName, String middleName,
                        String password, String confirmPassword, Set<Role> roles,
-                       Date passwordUpdateDate, String contactNumber) {
+                       Date passwordUpdateDate, String contact) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,7 +63,7 @@ public class CustomerDTO {
         this.confirmPassword = confirmPassword;
         this.roles = roles;
         this.passwordUpdateDate = passwordUpdateDate;
-        this.contactNumber=contactNumber;
+        this.contact = contact;
     }
 
     public String getEmail() {
@@ -122,5 +122,18 @@ public class CustomerDTO {
         this.passwordUpdateDate = passwordUpdateDate;
     }
 
-
+    @Override
+    public String toString() {
+        return "CustomerDTO{" +
+                "email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", roles=" + roles +
+                ", passwordUpdateDate=" + passwordUpdateDate +
+                ", contact='" + contact + '\'' +
+                '}';
+    }
 }

@@ -14,24 +14,25 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
-import java.util.*;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @RestController
-public class CustomerController {
+public class RegisterController {
+
     @Autowired
     CustomerService customerService;
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity handleException(BadRequestException e) {
-       return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity methodArgumentNotValidException(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
-        List<org.springframework.validation.FieldError> fieldErrors = result.getFieldErrors();
+        List<FieldError> fieldErrors = result.getFieldErrors();
         String validationErrList="";
         for (org.springframework.validation.FieldError fieldError: fieldErrors) {
             validationErrList += fieldError.getDefaultMessage()+"\n";
@@ -40,15 +41,28 @@ public class CustomerController {
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/customers")
-    public List<Customer> getAllCustomers(){
-        return customerService.getAllCustomers();
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public ResponseEntity alreadyExistsException(SQLIntegrityConstraintViolationException e) {
+        return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/customer/{id}")
-    @ResponseBody
-    public Customer getCustomerById(@PathParam("id") int customerId){
-        return customerService.getCustomerById(customerId);
+    @PostMapping("/register-customer")
+    public ResponseEntity<Object> registerCustomer(@Valid @RequestBody CustomerDTO customerDTO){
+        customerService.registerCustomer(customerDTO);
+        return new ResponseEntity<>("Created", HttpStatus.CREATED);
+    }
+    /*
+    * Test : Post Request Body JSON
+
+    {
+        "firstName":"tushar",
+        "middleName":"sharma",
+        "lastName":"Sharma",
+        "email":"tsu@gmail.com",
+        "password":"Password@123",
+        "confirmPassword":"Password@123",
+        "contact":"1231222222"
     }
 
+    * */
 }
