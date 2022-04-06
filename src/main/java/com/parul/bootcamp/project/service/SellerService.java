@@ -28,6 +28,11 @@ public class SellerService {
         User user = modelMapper.map(sellerDTO, User.class);
         Seller seller = modelMapper.map(sellerDTO, Seller.class);
         seller.setUser(user);
+
+        String confirmPassword = sellerDTO.getConfirmPassword();
+        if (! sellerDTO.getPassword().equals(confirmPassword)) {
+            throw new BadRequestException("Confirm Password did not match.");
+        }
         return sellerRepository.save(seller);
     }
 

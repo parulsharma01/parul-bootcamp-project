@@ -1,9 +1,12 @@
 package com.parul.bootcamp.project.controller;
 
 import com.parul.bootcamp.project.dto.CustomerDTO;
+import com.parul.bootcamp.project.dto.SellerDTO;
 import com.parul.bootcamp.project.entities.Customer;
+import com.parul.bootcamp.project.entities.Seller;
 import com.parul.bootcamp.project.exceptions.BadRequestException;
 import com.parul.bootcamp.project.service.CustomerService;
+import com.parul.bootcamp.project.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,45 +27,49 @@ public class RegisterController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    SellerService sellerService;
+
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity handleException(BadRequestException e) {
+    public ResponseEntity handleConfirmPwdNotMatchException(BadRequestException e) {
         return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity methodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public ResponseEntity handleValidationsException(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
-        String validationErrList="";
-        for (org.springframework.validation.FieldError fieldError: fieldErrors) {
-            validationErrList += fieldError.getDefaultMessage()+"\n";
+        String validationErrList = "";
+        for (org.springframework.validation.FieldError fieldError : fieldErrors) {
+            validationErrList += fieldError.getDefaultMessage() + "\n";
         }
         return new ResponseEntity(validationErrList,
-                HttpStatus.INTERNAL_SERVER_ERROR);
+                HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public ResponseEntity alreadyExistsException(SQLIntegrityConstraintViolationException e) {
-        return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity handleAlreadyExistsException(SQLIntegrityConstraintViolationException e) {
+        String errMsg = "";
+        if (e.getMessage().contains("Duplicate")) {
+            errMsg = "User Already Exists";
+        }
+        return new ResponseEntity(errMsg, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PostMapping("/register-customer")
-    public ResponseEntity<Object> registerCustomer(@Valid @RequestBody CustomerDTO customerDTO){
+    public ResponseEntity<Object> registerCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
         customerService.registerCustomer(customerDTO);
         return new ResponseEntity<>("Created", HttpStatus.CREATED);
     }
-    /*
-    * Test : Post Request Body JSON
 
-    {
-        "firstName":"tushar",
-        "middleName":"sharma",
-        "lastName":"Sharma",
-        "email":"tsu@gmail.com",
-        "password":"Password@123",
-        "confirmPassword":"Password@123",
-        "contact":"1231222222"
+    @PostMapping("/register-seller")
+    public ResponseEntity registerSeller(@Valid @RequestBody SellerDTO sellerDTO) {
+        Seller seller = sellerService.registerSeller(sellerDTO);
+        if (seller == null) {
+            return new ResponseEntity("Error occured",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity("Seller Registered Successfully",
+                HttpStatus.CREATED);
     }
-
-    * */
 }

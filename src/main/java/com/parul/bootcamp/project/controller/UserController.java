@@ -12,9 +12,4 @@ public class UserController {
   @Autowired
   UserRepository userRepository;
 
-  public void show(){
-    List<OrderStatusEnum> statusEnums = OrderStatusEnum.fromToMapping().get(OrderStatusEnum.CANCELLED);
-
-  }
-
 }

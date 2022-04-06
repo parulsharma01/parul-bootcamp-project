@@ -10,11 +10,11 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String gst;
     private String companyContact;
 
-//    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String companyName;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

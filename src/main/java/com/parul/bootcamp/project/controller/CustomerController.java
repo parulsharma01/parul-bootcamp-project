@@ -23,23 +23,6 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity handleException(BadRequestException e) {
-       return new ResponseEntity(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        BindingResult result = e.getBindingResult();
-        List<org.springframework.validation.FieldError> fieldErrors = result.getFieldErrors();
-        String validationErrList="";
-        for (org.springframework.validation.FieldError fieldError: fieldErrors) {
-            validationErrList += fieldError.getDefaultMessage()+"\n";
-        }
-        return new ResponseEntity(validationErrList,
-                HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
     @GetMapping("/customers")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();

@@ -34,15 +34,13 @@ public class CustomerService {
 
     public Customer registerCustomer(CustomerDTO customerDTO)
     {
-        System.out.println("Customer ENtity"+ customerDTO);
         User user = modelMapper.map(customerDTO, User.class);
         Customer customer = modelMapper.map(customerDTO, Customer.class);
-        System.out.println("Customer contact"+ customerDTO.getContact());
         customer.setUser(user);
 
         String confirmPassword = customerDTO.getConfirmPassword();
         if (! customerDTO.getPassword().equals(confirmPassword)) {
-            throw new BadRequestException("Confirm Password donot match.");
+            throw new BadRequestException("Confirm Password did not match.");
         }
 
         customerRepository.save(customer);
