@@ -26,9 +26,9 @@ public class User {
   private int invalidAttemptCount;
   private Date passwordUpdateDate;
 
-  @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-  @JoinColumn
-  private Seller seller;
+//  @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+//  @JoinColumn
+//  private Seller seller;
 
   @ManyToMany
   private Set<Role> roles;
@@ -36,14 +36,14 @@ public class User {
   @OneToMany
   @JoinColumn(name = "user_id")
   private List<Address> addresses;
-
-  public Seller getSeller() {
-    return seller;
-  }
-
-  public void setSeller(Seller seller) {
-    this.seller = seller;
-  }
+//
+//  public Seller getSeller() {
+//    return seller;
+//  }
+//
+//  public void setSeller(Seller seller) {
+//    this.seller = seller;
+//  }
 
   public Set<Role> getRoles() {
     return roles;
