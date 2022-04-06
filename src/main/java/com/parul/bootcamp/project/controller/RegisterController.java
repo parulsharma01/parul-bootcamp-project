@@ -4,7 +4,10 @@ import com.parul.bootcamp.project.dto.CustomerDTO;
 import com.parul.bootcamp.project.dto.SellerDTO;
 import com.parul.bootcamp.project.entities.Customer;
 import com.parul.bootcamp.project.entities.Seller;
+import com.parul.bootcamp.project.entities.Token;
+import com.parul.bootcamp.project.entities.User;
 import com.parul.bootcamp.project.exceptions.BadRequestException;
+import com.parul.bootcamp.project.repos.TokenRepository;
 import com.parul.bootcamp.project.service.CustomerService;
 import com.parul.bootcamp.project.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +73,16 @@ public class RegisterController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity("Seller Registered Successfully",
+                HttpStatus.CREATED);
+    }
+
+    @PostMapping("/activate-account")
+    public ResponseEntity activateCustomerByToken(@Valid @RequestBody Token token) {
+        User user = customerService.activateUserByToken(token);
+        if (user == null) {
+            return new ResponseEntity("Could not Activate Account.",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity("Account Activated Successfully",
                 HttpStatus.CREATED);
     }
 }
