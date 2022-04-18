@@ -30,7 +30,7 @@ public class CustomerController {
 
     @GetMapping("/customer/{id}")
     @ResponseBody
-    public Customer getCustomerById(@PathParam("id") int customerId){
+    public Customer getCustomerById(@PathParam("id") Integer customerId){
         return customerService.getCustomerById(customerId);
     }
 

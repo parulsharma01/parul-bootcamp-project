@@ -11,7 +11,7 @@ public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private String authority;
+  private Enum authority;
 
   public int getId() {
     return id;
@@ -21,11 +21,11 @@ public class Role {
     this.id = id;
   }
 
-  public String getAuthority() {
+  public Enum getAuthority() {
     return authority;
   }
 
-  public void setAuthority(String authority) {
+  public void setAuthority(Enum authority) {
     this.authority = authority;
   }
 }

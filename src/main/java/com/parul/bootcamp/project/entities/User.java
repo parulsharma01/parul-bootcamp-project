@@ -1,5 +1,8 @@
 package com.parul.bootcamp.project.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +29,7 @@ public class User {
   private int invalidAttemptCount;
   private Date passwordUpdateDate;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   private Set<Role> roles;
 
   @OneToMany
